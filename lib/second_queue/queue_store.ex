@@ -11,9 +11,12 @@ defmodule SecondQueue.QueueStore do
         send caller, Map.get(map, key)
         queues_loop(map)
       {:put, key, value} ->
-        IO.puts("finally in put")
+        IO.puts("i am here")
         queues_loop(Map.put(map, key, value))
     end
   end
 
+  # def add_queue(queue) do
+  #   Agent.update(:qs, fn list -> [queue | list] end)
+  # end
 end
