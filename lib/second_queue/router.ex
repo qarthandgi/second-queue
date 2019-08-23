@@ -23,7 +23,7 @@ defmodule SecondQueue.Router do
     # handle the params
     QueueService.handle_incoming(queue, message)
 
-    send_resp(conn, 201, "Created")
+    send_resp(conn, 200, "Created")
   end
 
   match _ do

@@ -26,14 +26,14 @@ defmodule SecondQueue.RouterTest do
       |> conn("/receive-message?queue=#{@low_queue}&message=#{@message_1}")
       |> Router.call(@opts)
     assert conn_1.state == :sent
-    assert conn_1.status == 201
+    assert conn_1.status == 200
 
     conn_2 =
       :get
       |> conn("/receive-message?queue=#{@low_queue}&message=#{@message_2}")
       |> Router.call(@opts)
     assert conn_2.state == :sent
-    assert conn_2.status == 201
+    assert conn_2.status == 200
 
     # now the `:qs` (queue store) process should have two messages in the `low` queue, let's confirm that
     queue_messages = Agent.get(:qs, &Map.get(&1, @low_queue))
@@ -48,14 +48,14 @@ defmodule SecondQueue.RouterTest do
       |> conn("/receive-message?queue=#{@intermediate_queue}&message=#{@message_1}")
       |> Router.call(@opts)
     assert conn_1.state == :sent
-    assert conn_1.status == 201
+    assert conn_1.status == 200
 
     conn_2 =
       :get
       |> conn("/receive-message?queue=#{@intermediate_queue}&message=#{@message_2}")
       |> Router.call(@opts)
     assert conn_2.state == :sent
-    assert conn_2.status == 201
+    assert conn_2.status == 200
 
     # Messages should immediately be availabe ont eh `intermediate` queue
     current_queue_messages = Agent.get(:qs, &Map.get(&1, @intermediate_queue))
