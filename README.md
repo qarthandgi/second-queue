@@ -6,7 +6,7 @@
 
 
 
-#### Features
+### Features
 * Query Parameter validator to check for `queue` and `message` query params
 * Queue store process to maintain state of queues and associated messages
 * Separate processes for each queue to handle checking queue and printing at regular interval
