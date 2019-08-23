@@ -2,11 +2,11 @@ defmodule SecondQueue.QueueService do
   alias SecondQueue.QueueStore
   use Agent
 
-  {:ok, agent_pid} = QueueStore.start_queues_link()
-  Process.register(agent_pid, :qs)
-
   def handle_incoming(queue, message) do
-    queue_atom = String.to_atom(queue)
-    send(:qs, {:put, queue_atom, "success"})
+    queue_exists = Agent.get(:qs, &Map.has_key?(&1, queue))
+    unless queue_exists do
+      QueueStore.add_queue(queue)
+    end
+    QueueStore.queue_message(queue, message)
   end
 end

@@ -12,7 +12,7 @@ defmodule SecondQueue.Router do
   plug :dispatch
 
   get "/" do
-    send_resp(conn, 200, "Welcome")
+    send_resp(conn, 200, "Welcome, please visit /receive-message to start")
   end
 
   get "/receive-message" do
@@ -27,7 +27,7 @@ defmodule SecondQueue.Router do
   end
 
   match _ do
-    send_resp(conn, 404, "Oops!")
+    send_resp(conn, 404, "Bad Endpoint or Verb")
   end
 
   defp handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do

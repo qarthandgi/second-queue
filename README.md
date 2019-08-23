@@ -1,21 +1,14 @@
 # SecondQueue
 
-**TODO: Add description**
 
-## Installation
+#### Getting Started
+* Ensure to run `mix deps.get` to gather dependencies
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `second_queue` to your list of dependencies in `mix.exs`:
 
-```elixir
-def deps do
-  [
-    {:second_queue, "~> 0.1.0"}
-  ]
-end
-```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/second_queue](https://hexdocs.pm/second_queue).
-
+#### Features
+* Query Parameter validator to check for `queue` and `message` query params
+* Queue store process to maintain state of queues and associated messages
+* Separate processes for each queue to handle checking queue and printing at regular interval
+* 404 endpoint for unsupported endpoint and unsupported verbs
+* Tests to validate that queues are operating and outputting correctly
